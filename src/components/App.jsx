@@ -1,41 +1,47 @@
-import React, { useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+import { auth } from '../config/firebase'
+import Home from '../pages/home'
+import Login from '../pages/login'
+import Signup from '../pages/signup'
+import NotFound from '../pages/404'
+import Loading from './Loading'
+import Header from './Header'
+import AppContext from '../context/AppContext'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const { isLoggedIn, setIsLoggedIn, user, setUser } = useContext(AppContext)
+  const [isLoading, setIsLoading] = useState(false)
 
+  useEffect(() => {
+    setIsLoading(true)
+    auth.onAuthStateChanged((user) => {
+      if (user) {
+        setIsLoggedIn(true)
+        setUser(user)
+        setIsLoading(false)
+      } else {
+        setIsLoggedIn(false)
+        setUser({})
+        setIsLoading(false)
+      }
+    })
+  }, [])
+
+  if (isLoading) {
+    return <Loading />
+  }
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>Hello Vite + React!</p>
-        <p>
-          <button type="button" onClick={() => setCount((count) => count + 1)}>
-            count is: {count}
-          </button>
-        </p>
-        <p>
-          Edit <code>App.jsx</code> and save to test HMR updates.
-        </p>
-        <p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-          {' | '}
-          <a
-            className="App-link"
-            href="https://vitejs.dev/guide/features.html"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Vite Docs
-          </a>
-        </p>
-      </header>
+    <div>
+      <Router>
+        <Header />
+        <Switch>
+          <Route path="/" exact component={Home} />
+          <Route path="/login" component={Login} />
+          <Route path="/signup" component={Signup} />
+          <Route component={NotFound} />
+        </Switch>
+      </Router>
     </div>
   )
 }
