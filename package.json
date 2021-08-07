@@ -7,10 +7,12 @@
         "serve": "vite preview"
     },
     "dependencies": {
+        "axios": "^0.21.1",
         "firebase": "^8.8.1",
         "react": "^17.0.0",
         "react-dom": "^17.0.0",
         "react-icons": "^4.2.0",
+        "react-infinite-scroll-component": "^6.1.0",
         "react-router-dom": "^5.2.0"
     },
     "devDependencies": {
