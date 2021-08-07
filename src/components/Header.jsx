@@ -23,24 +23,6 @@ const Header = () => {
               Home
             </NavLink>
           </li>
-          <li className="mr-5">
-            <NavLink
-              to="/gallery"
-              strict
-              activeClassName="underline text-blue-200"
-            >
-              Gallery
-            </NavLink>
-          </li>
-          <li className="mr-5">
-            <NavLink
-              to="/tensorflow"
-              exact
-              activeClassName="underline text-blue-200"
-            >
-              Tensorflow
-            </NavLink>
-          </li>
         </ul>
         <ul className="flex justify-between px-10">
           <li>
