@@ -27,31 +27,36 @@ const SignUp = () => {
   }
 
   return (
-    <div>
-      <div>
-        <form onSubmit={handleSignup}>
-          <h1>Please SignUp</h1>
-          {error && <p>{error}</p>}
-          <div>
+    <div className="flex my-32  justify-center">
+      <div className=" w-5/12  text-white flex flex-wrap justify-center shadow-lg rounded-lg bg-gradient-to-br from-red-600 to-pink-700 ">
+        <form className="  w-10/12 " onSubmit={handleSignup}>
+          <h1 className="w-full text-4xl  tracking-widest text-center pt-10 pb-3">
+            SignUp Please{' '}
+          </h1>
+          {error && <p>{error.message}</p>}
+          <div className="w-full my-6  text-black ">
             <input
               type="email"
+              placeholder="enter your email"
               ref={emailRef}
-              className=""
-              placeholder="Enter your email"
               required
+              className="px-1 text-lg"
             />
           </div>
-          <div>
+          <div className="w-full my-6 text-black  ">
             <input
-              ref={passwordRef}
               type="password"
-              className=""
               placeholder="password"
+              ref={passwordRef}
               required
+              className="px-1 text-lg"
             />
           </div>
-          <div>
-            <button disabled={loading} type="submit">
+          <div className="w-full my-10">
+            <button
+              type="submit"
+              className="p-2 rounded shadow w-full bg-gradient-to-tr from-gray-400 to-gray-200 text-pink-700 font-bold"
+            >
               SignUp
             </button>
           </div>
