@@ -37,7 +37,7 @@ const Header = () => {
           {!isLoggedIn && (
             <li className="ml-5">
               <NavLink to="/signup" activeClassName="underline text-blue-200">
-                SignUp
+                Signup
               </NavLink>
             </li>
           )}
