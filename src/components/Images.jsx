@@ -6,8 +6,8 @@ import Image from './Image'
 
 const Images = () => {
   const [page, setPage] = useState(1)
-  const [searchTerm, setSearchTerm] = useState(null)
-  const [showPreview, setShowPreview] = useState(null)
+  const [searchTerm, setSearchTerm] = useState('')
+  const [showPreview, setShowPreview] = useState(false)
   const [images, setImages, error, isLoading, fetch] = useFetchImage(
     page,
     searchTerm,
@@ -16,10 +16,13 @@ const Images = () => {
   function handleInput(e) {
     setSearchTerm(e.target.value)
   }
+
   function handleSubmit(e) {
     e.preventDefault()
+    setPage(1)
     fetch(page, searchTerm)
   }
+
   return (
     <div>
       <div className="my-5">
@@ -36,12 +39,13 @@ const Images = () => {
 
       {error && (
         <div className="flex h-screen">
+          {' '}
           <p className="m-auto">{error}</p>
         </div>
       )}
       <InfiniteScroll
         dataLength={images.length}
-        next={() => setPage(page + 1)}
+        next={() => setPage((page) => page + 1)}
         hasMore={true}
         className="flex flex-wrap justify-center text-center"
       >
@@ -51,14 +55,16 @@ const Images = () => {
             originalImage={img.src.original}
             key={index}
             index={index}
-            show={() => setShowPreview(index)}
+            show={() => {
+              setShowPreview(index)
+            }}
           />
         ))}
       </InfiniteScroll>
 
-      {showPreview && (
+      {showPreview | (showPreview === 0) && (
         <div
-          className="absolute top-20 left-1/3 z-40 flex justify-center w-90 h-40 items-center"
+          className="fixed inset-0 z-40 m-auto flex justify-center w-70 h-70 items-center"
           onClick={() => setShowPreview(false)}
         >
           <div className="my-auto bg-white">
