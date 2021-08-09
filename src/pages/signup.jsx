@@ -28,7 +28,7 @@ const SignUp = () => {
 
   return (
     <div className="flex my-32  justify-center">
-      <div className=" w-5/12  text-white flex flex-wrap justify-center shadow-lg rounded-lg bg-gradient-to-br from-red-600 to-pink-700 ">
+      <div className=" w-5/12  text-white flex flex-wrap justify-center shadow-lg rounded-lg bg-gradient-to-br to-gray-600 from-purple-500 ">
         <form className="  w-10/12 " onSubmit={handleSignup}>
           <h1 className="w-full text-4xl  tracking-widest text-center pt-10 pb-3">
             SignUp Please{' '}
@@ -55,7 +55,7 @@ const SignUp = () => {
           <div className="w-full my-10">
             <button
               type="submit"
-              className="p-2 rounded shadow w-full bg-gradient-to-tr from-gray-400 to-gray-200 text-pink-700 font-bold"
+              className="p-2 rounded shadow w-full bg-gradient-to-tr from-gray-400 to-gray-200 text-purple-700 font-bold"
             >
               SignUp
             </button>
