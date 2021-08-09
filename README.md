@@ -1,8 +1,8 @@
 ### React-Gallery
 ##### Dependencies used:-
-Tensor-Flow
-file saver
-tailwind
-Axios
-infinite-scroll-component
+Tensor-Flow <br /> 
+file saver <br /> 
+tailwind <br /> 
+Axios <br /> 
+infinite-scroll-component <br /> 
 Firebase
