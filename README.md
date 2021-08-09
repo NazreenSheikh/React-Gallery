@@ -1,5 +1,5 @@
 ### React-Gallery
-#####Dependencies used:-
+##### Dependencies used:-
 Tensor-Flow
 file saver
 tailwind
