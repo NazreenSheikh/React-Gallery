@@ -1,14 +1,24 @@
-import React, { useRef, useState } from 'react'
+import React, { useContext, useRef, useState } from 'react'
 import { HiDownload, HiOutlineInformationCircle } from 'react-icons/hi'
 import { saveAs } from 'file-saver'
 import useTFClassify from '../hooks/useTFClassify'
+import AppContext from '../context/AppContext'
+import { useHistory } from 'react-router-dom'
 
 const Image = ({ image, show, index, originalImage }) => {
   const [hovering, setHovering] = useState(false)
   const imageRef = useRef()
   const [predict, predictions, setPredictions, isLoading] = useTFClassify()
+  const { user } = useContext(AppContext)
+  const history = useHistory()
+
   function handleDownload(image) {
-    saveAs(image, 'image.jpeg')
+    if (Object.keys(user).length === 0) {
+      alert('Login to Download Image')
+      history.push('/login')
+    } else {
+      saveAs(image, 'image.jpeg')
+    }
   }
 
   return (
@@ -48,14 +58,14 @@ const Image = ({ image, show, index, originalImage }) => {
             setPredictions([])
           }}
           className="absolute bg-gray-800 text-white rounded-lg
-                shadow px-2 left-0 bottom-3 "
+                shadow px-2 left-0 bottom-3"
         >
           {isLoading && <p>Fetching results...</p>}
           {predictions.map((prediction) => {
             return (
-              <div className="flex justify-between text-sm">
-                <p>{prediction.className}</p>
-                <p>{Math.floor(prediction.probability * 100) + '%'}</p>
+              <div className="flex justify-between text-sm gap-2">
+                <p>{prediction.className.split(',')[0]}</p>
+                <p>{Math.ceil(prediction.probability * 100) + '%'}</p>
               </div>
             )
           })}
