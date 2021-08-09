@@ -16,10 +16,10 @@ const Header = () => {
   }
   return (
     <div>
-      <nav className="flex justify-between py-5 text-white bg-gray-900">
+      <nav className="flex justify-between py-5 text-white  bg-gray-600">
         <ul className="flex justify-between px-10">
           <li className="mr-5">
-            <NavLink to="/" exact activeClassName="underline text-blue-200">
+            <NavLink to="/" exact activeClassName="underline text-white">
               Home
             </NavLink>
           </li>
@@ -29,14 +29,14 @@ const Header = () => {
             {isLoggedIn ? (
               <button onClick={handleLogout}>Logout</button>
             ) : (
-              <NavLink to="/login" activeClassName="underline text-blue-200">
+              <NavLink to="/login" activeClassName="underline text-white">
                 Login
               </NavLink>
             )}
           </li>
           {!isLoggedIn && (
             <li className="ml-5">
-              <NavLink to="/signup" activeClassName="underline text-blue-200">
+              <NavLink to="/signup" activeClassName="underline text-white">
                 Signup
               </NavLink>
             </li>
