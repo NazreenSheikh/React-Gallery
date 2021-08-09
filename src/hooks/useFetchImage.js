@@ -39,6 +39,9 @@ export default function useFetchImage(page, searchTerm) {
   useEffect(() => {
     setIsLoading(true)
     fetch(page, searchTerm)
+    return () => {
+      setIsLoading(false)
+    }
   }, [page, searchTerm])
   return [images, setImages, error, isLoading]
 }
